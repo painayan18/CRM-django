@@ -1,0 +1,39 @@
+{% extends 'crm_app/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_field %}
+
+{% block title %}{{ form.instance.pk|yesno:"Edit Customer,Add New Customer" }}{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-4">{{ form.instance.pk|yesno:"Edit Customer,Add New Customer" }}</h1>
+<form method="post" novalidate>
+    {% csrf_token %}
+    <div class="row g-3">
+        <div class="col-md-6">
+            {{ form.name|as_crispy_field:"bootstrap5" }}
+        </div>
+        <div class="col-md-6">
+            {{ form.industry|as_crispy_field:"bootstrap5" }}
+        </div>
+        <div class="col-md-6">
+            {{ form.email|as_crispy_field:"bootstrap5" }}
+        </div>
+        <div class="col-md-6">
+            {{ form.phone|as_crispy_field:"bootstrap5" }}
+        </div>
+        <div class="col-md-12">
+            {{ form.address|as_crispy_field:"bootstrap5" }}
+        </div>
+        <div class="col-md-12">
+            {{ form.website|as_crispy_field:"bootstrap5" }}
+        </div>
+    </div>
+    <div class="mt-4">
+        <button type="submit" class="btn btn-success">
+            <i class="bi bi-save-fill"></i> Save
+        </button>
+        <a href="{% url 'customer_list' %}" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+{% endblock %}

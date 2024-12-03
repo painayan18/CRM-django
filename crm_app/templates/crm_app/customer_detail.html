@@ -1,0 +1,42 @@
+{% extends 'crm_app/base.html' %}
+{% load static %}
+
+{% block title %}{{ customer.name }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h2 class="h5 mb-0">{{ customer.name }}</h2>
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-3">Industry:</dt>
+            <dd class="col-sm-9">{{ customer.industry }}</dd>
+
+            <dt class="col-sm-3">Email:</dt>
+            <dd class="col-sm-9">
+                <a href="mailto:{{ customer.email }}">{{ customer.email }}</a>
+            </dd>
+
+            <dt class="col-sm-3">Phone:</dt>
+            <dd class="col-sm-9">{{ customer.phone }}</dd>
+
+            <dt class="col-sm-3">Address:</dt>
+            <dd class="col-sm-9">{{ customer.address|linebreaksbr }}</dd>
+
+            <dt class="col-sm-3">Website:</dt>
+            <dd class="col-sm-9">
+                <a href="{{ customer.website }}" target="_blank">{{ customer.website }}</a>
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer text-end">
+        <a href="{% url 'customer_update' customer.pk %}" class="btn btn-outline-primary me-2">
+            <i class="bi bi-pencil-fill"></i> Edit
+        </a>
+        <a href="{% url 'customer_delete' customer.pk %}" class="btn btn-outline-danger">
+            <i class="bi bi-trash-fill"></i> Delete
+        </a>
+    </div>
+</div>
+{% endblock %}
