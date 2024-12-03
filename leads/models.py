@@ -4,9 +4,11 @@ class Lead(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     age = models.IntegerField()
-    email = models.EmailField()
-    phone = models.CharField(max_length=50)
+    agent = models.ForeignKey("Agent", on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.first_name
+
+class Agent(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+
 
